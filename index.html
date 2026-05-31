@@ -6,61 +6,141 @@
 <title>나는 어떤 학교생활 위험 유형일까?</title>
 
 <style>
+
+*{
+box-sizing:border-box;
+}
+
 body{
-    font-family: "Malgun Gothic", sans-serif;
-    background:#f5f7fb;
-    margin:0;
-    padding:20px;
+font-family:"Malgun Gothic",sans-serif;
+background:linear-gradient(135deg,#dbeafe,#f0f9ff);
+margin:0;
+padding:20px;
+min-height:100vh;
 }
 
 .container{
-    max-width:700px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+max-width:850px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.12);
 }
 
 h1{
-    text-align:center;
+text-align:center;
+font-size:40px;
+margin-bottom:10px;
+color:#1e3a8a;
 }
 
 .question{
-    margin:25px 0;
+background:#f8fafc;
+padding:20px;
+border-radius:18px;
+margin:20px 0;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+transition:0.2s;
+}
+
+.question:hover{
+transform:translateY(-2px);
+}
+
+.question h3{
+margin-top:0;
+color:#2563eb;
 }
 
 label{
-    display:block;
-    margin:8px 0;
-    cursor:pointer;
+display:block;
+padding:12px;
+margin:10px 0;
+border-radius:12px;
+cursor:pointer;
+transition:0.2s;
+}
+
+label:hover{
+background:#dbeafe;
+}
+
+input[type="radio"]{
+margin-right:10px;
 }
 
 button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:#4a6cf7;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
+width:100%;
+padding:18px;
+border:none;
+border-radius:15px;
+background:#2563eb;
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
 }
 
 button:hover{
-    background:#3555d3;
+background:#1d4ed8;
+transform:translateY(-2px);
 }
 
 #result{
-    margin-top:30px;
-    padding:20px;
-    border-radius:10px;
-    display:none;
+margin-top:30px;
+padding:30px;
+border-radius:20px;
+display:none;
+animation:fadeUp .5s ease;
 }
 
 .result-box{
-    background:#eef3ff;
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+border-left:10px solid #2563eb;
+box-shadow:0 8px 25px rgba(0,0,0,0.08);
 }
+
+#result h2{
+font-size:40px;
+text-align:center;
+margin-top:0;
+color:#1e3a8a;
+}
+
+#result p{
+font-size:18px;
+line-height:1.8;
+}
+
+.intro{
+text-align:center;
+font-size:18px;
+color:#64748b;
+margin-bottom:30px;
+}
+
+.shareBtn{
+margin-top:20px;
+background:#10b981;
+}
+
+.shareBtn:hover{
+background:#059669;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
 </head>
 
@@ -68,10 +148,13 @@ button:hover{
 
 <div class="container">
 
-<h1>🏫 나는 어떤 학교생활 위험 유형일까?</h1>
+<h1>🏫 학교생활 안전 유형 검사</h1>
 
-<p>각 문항에서 가장 가까운 답을 선택하세요.</p>
-
+<p class="intro">
+당신의 생활 습관 속에는 어떤 건강·안전 위험 요소가 숨어 있을까요?<br>
+총 5문항 · 약 1분 소요
+</p>
+    
 <form id="quiz">
 
 <div class="question">
@@ -116,11 +199,50 @@ button:hover{
 
 <button type="button" onclick="showResult()">결과 보기</button>
 
-</form>
-
-<div id="result" class="result-box"></div>
-
 </div>
+<div class="question">
+<h3>6. 수업 중 가장 자주 불편한 부위는?</h3>
+<label><input type="radio" name="q6" value="A"> A. 목이나 허리</label>
+<label><input type="radio" name="q6" value="B"> B. 귀</label>
+<label><input type="radio" name="q6" value="C"> C. 다리</label>
+<label><input type="radio" name="q6" value="D"> D. 특별히 없다</label>
+</div>
+
+<div class="question">
+<h3>7. 등하교 중 가장 많이 하는 행동은?</h3>
+<label><input type="radio" name="q7" value="A"> A. 잠을 잔다</label>
+<label><input type="radio" name="q7" value="B"> B. 음악을 듣는다</label>
+<label><input type="radio" name="q7" value="C"> C. 서서 이동한다</label>
+<label><input type="radio" name="q7" value="D"> D. 주변을 살피며 이동한다</label>
+</div>
+
+<div class="question">
+<h3>8. 쉬는 시간에 가장 필요한 것은?</h3>
+<label><input type="radio" name="q8" value="A"> A. 수면</label>
+<label><input type="radio" name="q8" value="B"> B. 음악</label>
+<label><input type="radio" name="q8" value="C"> C. 친구들과 이동</label>
+<label><input type="radio" name="q8" value="D"> D. 스트레칭</label>
+</div>
+
+<div class="question">
+<h3>9. 버스에서 자리가 없다면?</h3>
+<label><input type="radio" name="q9" value="A"> A. 기대서 잔다</label>
+<label><input type="radio" name="q9" value="B"> B. 이어폰을 끼고 음악을 듣는다</label>
+<label><input type="radio" name="q9" value="C"> C. 한 손으로만 손잡이를 잡는다</label>
+<label><input type="radio" name="q9" value="D"> D. 두 발로 균형을 잡고 선다</label>
+</div>
+
+<div class="question">
+<h3>10. 건강한 학교생활을 위해 가장 중요한 것은?</h3>
+<label><input type="radio" name="q10" value="A"> A. 충분한 휴식</label>
+<label><input type="radio" name="q10" value="B"> B. 적절한 음량 사용</label>
+<label><input type="radio" name="q10" value="C"> C. 안전한 이동 습관</label>
+<label><input type="radio" name="q10" value="D"> D. 균형 잡힌 생활 습관</label>
+</div>
+</form>
+<button class="shareBtn" onclick="copyLink()">
+📤 친구들에게 공유하기
+</button>
 
 <script>
 function showResult(){
@@ -132,7 +254,7 @@ C:0,
 D:0
 };
 
-for(let i=1;i<=5;i++){
+for(let i=1;i<=10;i++){
 let answer=document.querySelector('input[name="q'+i+'"]:checked');
 
 if(!answer){
@@ -188,6 +310,9 @@ behavior:"smooth"
 });
 }
 </script>
-
+function copyLink(){
+navigator.clipboard.writeText(window.location.href);
+alert("링크가 복사되었습니다!");
+}
 </body>
 </html>
