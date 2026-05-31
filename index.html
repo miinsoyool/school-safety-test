@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나는 어떤 학교생활 위험 유형일까?</title>
+
+<style>
+body{
+    font-family: "Malgun Gothic", sans-serif;
+    background:#f5f7fb;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+.question{
+    margin:25px 0;
+}
+
+label{
+    display:block;
+    margin:8px 0;
+    cursor:pointer;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#4a6cf7;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#3555d3;
+}
+
+#result{
+    margin-top:30px;
+    padding:20px;
+    border-radius:10px;
+    display:none;
+}
+
+.result-box{
+    background:#eef3ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏫 나는 어떤 학교생활 위험 유형일까?</h1>
+
+<p>각 문항에서 가장 가까운 답을 선택하세요.</p>
+
+<form id="quiz">
+
+<div class="question">
+<h3>1. 쉬는 시간에 가장 많이 하는 행동은?</h3>
+<label><input type="radio" name="q1" value="A"> A. 책상에 엎드려 잔다</label>
+<label><input type="radio" name="q1" value="B"> B. 이어폰으로 음악을 듣는다</label>
+<label><input type="radio" name="q1" value="C"> C. 친구들과 돌아다닌다</label>
+<label><input type="radio" name="q1" value="D"> D. 스트레칭을 한다</label>
+</div>
+
+<div class="question">
+<h3>2. 버스를 타면 보통?</h3>
+<label><input type="radio" name="q2" value="A"> A. 앉으면 바로 잔다</label>
+<label><input type="radio" name="q2" value="B"> B. 음악을 듣는다</label>
+<label><input type="radio" name="q2" value="C"> C. 서서 가다가 휘청거리는 경우가 많다</label>
+<label><input type="radio" name="q2" value="D"> D. 손잡이를 잘 잡고 이동한다</label>
+</div>
+
+<div class="question">
+<h3>3. 이어폰 음량은?</h3>
+<label><input type="radio" name="q3" value="A"> A. 거의 사용 안 함</label>
+<label><input type="radio" name="q3" value="B"> B. 크게 듣는 편</label>
+<label><input type="radio" name="q3" value="C"> C. 상황에 따라 다름</label>
+<label><input type="radio" name="q3" value="D"> D. 적당한 음량 유지</label>
+</div>
+
+<div class="question">
+<h3>4. 피곤할 때 나는?</h3>
+<label><input type="radio" name="q4" value="A"> A. 엎드려 잔다</label>
+<label><input type="radio" name="q4" value="B"> B. 음악을 듣는다</label>
+<label><input type="radio" name="q4" value="C"> C. 걸어 다닌다</label>
+<label><input type="radio" name="q4" value="D"> D. 가볍게 스트레칭한다</label>
+</div>
+
+<div class="question">
+<h3>5. 버스가 급정거하면?</h3>
+<label><input type="radio" name="q5" value="A"> A. 자다가 깬다</label>
+<label><input type="radio" name="q5" value="B"> B. 이어폰 때문에 늦게 눈치챈다</label>
+<label><input type="radio" name="q5" value="C"> C. 휘청거린다</label>
+<label><input type="radio" name="q5" value="D"> D. 중심을 잘 잡는다</label>
+</div>
+
+<button type="button" onclick="showResult()">결과 보기</button>
+
+</form>
+
+<div id="result" class="result-box"></div>
+
+</div>
+
+<script>
+function showResult(){
+
+let scores = {
+A:0,
+B:0,
+C:0,
+D:0
+};
+
+for(let i=1;i<=5;i++){
+let answer=document.querySelector('input[name="q'+i+'"]:checked');
+
+if(!answer){
+alert("모든 문항에 답해주세요!");
+return;
+}
+
+scores[answer.value]++;
+}
+
+let type = Object.keys(scores).reduce((a,b)=>
+scores[a] > scores[b] ? a : b
+);
+
+let result = document.getElementById("result");
+
+if(type==="A"){
+result.innerHTML=`
+<h2>😴 ZZZZ형</h2>
+<p><b>책상 취침형</b></p>
+<p>엎드려 자는 습관이 많은 유형입니다. 목, 허리, 팔꿈치 신경에 부담이 갈 수 있으므로 바른 자세로 휴식하는 것이 좋습니다. 몸에 부담이 가지 않도록 자는 방법은 3-8 안전부 신문을 참고해주세요!</p>
+`;
+}
+
+if(type==="B"){
+result.innerHTML=`
+<h2>🎧 Music is my life형</h2>
+<p><b>이어폰 과몰입형</b></p>
+<p>음악과 함께하는 시간이 많습니다. 장시간 고음량 사용은 소음성 난청 위험을 높일 수 있습니다. 이어폰 사용의 위험성과 해결 방안을 더 알고싶으시다면 3-8 안전부 신문을 참고해주세요!</p>
+`;
+}
+
+if(type==="C"){
+result.innerHTML=`
+<h2>🚌 SWAY형</h2>
+<p><b>버스 곡예사형</b></p>
+<p>이동 중 활동이 많은 유형입니다. 급정거 시 균형을 잃지 않도록 손잡이를 잘 잡는 습관이 필요합니다. 자세한 버스에서 넘어지지 않는 방법이 궁금하다면 3-8 안전부 신문을 참고해주세요!</p>
+`;
+}
+
+if(type==="D"){
+result.innerHTML=`
+<h2>⭐ SAFE형</h2>
+<p><b>안전 모범형</b></p>
+<p>건강과 안전을 잘 관리하는 유형입니다. 좋은 생활 습관을 유지하고 주변 친구들에게도 알려주세요.</p>
+`;
+}
+
+result.style.display="block";
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+}
+</script>
+
+</body>
+</html>
